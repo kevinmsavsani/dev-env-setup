@@ -1,8 +1,17 @@
 {
   "name": "dev-env-setup",
   "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "prestart": "babel-node buildScripts/startMessage.js",
+    "start": "npm-run-all --parallel open:src",
+    "open:src": "babel-node buildScripts/srcServer.js",
+    "localtunnel": "lt --port 3000",
+    "share": "npm-run-all --parallel open:src localtunnel"
+  },
   "author": "Kevin",
   "dependencies": {
+    "chalk": "^4.1.1",
     "whatwg-fetch": "3.6.2"
   },
   "devDependencies": {
@@ -12,7 +21,6 @@
     "babel-preset-latest": "6.16.0",
     "babel-register": "6.26.0",
     "chai": "4.3.4",
-    "chalk": "4.1.0",
     "cheerio": "0.22.0",
     "compression": "1.7.4",
     "cross-env": "7.0.3",

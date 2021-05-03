@@ -1,25 +1,27 @@
 {
   "name": "dev-env-setup",
   "version": "1.0.0",
-  "type": "module",
   "scripts": {
     "prestart": "babel-node buildScripts/startMessage.js",
-    "start": "npm-run-all --parallel open:src lint:watch",
+    "start": "npm-run-all --parallel open:src lint:watch test:watch",
     "open:src": "babel-node buildScripts/srcServer.js",
     "localtunnel": "lt --port 3000",
     "share": "npm-run-all --parallel open:src localtunnel",
     "lint": "esw webpack.config.* src buildScripts --color",
-    "lint:watch": "npm run lint -- --watch"
-    },
+    "lint:watch": "npm run lint -- --watch",
+    "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
+    "test:watch": "npm run test -- --watch"
+  },
   "author": "Kevin",
   "dependencies": {
+    "babel": "^6.23.0",
     "chalk": "^4.1.1",
     "webpack": "^5.36.2",
     "whatwg-fetch": "3.6.2"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
-    "babel-core": "6.26.3",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "8.2.2",
     "babel-preset-latest": "6.16.0",
     "babel-register": "6.26.0",
